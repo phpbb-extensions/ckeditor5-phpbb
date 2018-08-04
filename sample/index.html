@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>CKEditor 5 – classic editor build – development sample</title>
+	<style>
+		body {
+			max-width: 800px;
+			margin: 20px auto;
+		}
+	</style>
+	<link rel="stylesheet" href="../packages/ckeditor5-phpbb-build/build/ckeditor.css">
+</head>
+<body>
+
+<h1>CKEditor 5 – phpBB build – development sample</h1>
+
+<div id="editor">
+	<p>This is an instance of the classic editor build.</p>
+
+	<ul>
+		<li>Foo</li>
+		<li>Bar</li>
+	</ul>
+
+	<p>You can use this sample to validate whether your <a
+			href="https://docs.ckeditor.com/ckeditor5/latest/builds/guides/development/custom-builds.html">custom
+		build</a> works fine.</p>
+
+	<ol>
+		<li>Foo</li>
+		<li>Bar</li>
+	</ol>
+
+	<p>This is just another <b>paragraph, <u>with <i>some</u> ugly</b> formatting</i>. (Also this has invalid HTML)...
+	</p>
+</div>
+
+<p><a href="javascript:getContent()">Get Data!</a></p>
+
+<p id="content" style="border: 1px dashed #000; padding: 0.75em;"></p>
+
+<script src="../packages/ckeditor5-phpbb-build/build/ckeditor.js"></script>
+<script>
+	const editor = new phpBBCKEditor();
+	editor.create(document.querySelector('#editor'));
+
+	function getContent() {
+		document.getElementById('content').innerText = editor.getEditor().getData();
+	}
+</script>
+
+</body>
+</html>

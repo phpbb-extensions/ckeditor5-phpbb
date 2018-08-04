@@ -1,0 +1,38 @@
+{
+  "name": "@phpbb-extensions/ckeditor5-phpbb-bbcode",
+  "version": "0.1.0",
+  "description": "BBCode data processor for CKEditor5",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phpbb-extensions/ckeditor5-phpbb-bbcode.git"
+  },
+  "keywords": [
+    "CKEditor5",
+    "ckeditor5",
+    "ckeditor5-feature",
+    "BBCode",
+    "ckeditor5-data-processor",
+    "ckeditor5-bbcode",
+    "phpBB"
+  ],
+  "author": "phpBB Limited",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/phpbb-extensions/ckeditor5-phpbb-bbcode/issues"
+  },
+  "homepage": "https://github.com/phpbb-extensions/ckeditor5-phpbb-bbcode#readme",
+  "dependencies": {
+    "@ckeditor/ckeditor5-core": "^11.0.0",
+    "@ckeditor/ckeditor5-engine": "^10.2.0"
+  },
+  "files": [
+    "src"
+  ],
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-ckeditor5": "^1.0.8"
+  },
+  "scripts": {
+    "lint": "eslint src/**/*.js"
+  }
+}
