@@ -100,16 +100,31 @@ export default class ElementProcessor {
 	/**
 	 * Returns the processor for the model node.
 	 *
-	 * @param name The name of the model node.
+	 * @param {String} modelName The name of the model node.
+	 * @param {String} viewName The name of the view node (Defaults to null).
 	 *
 	 * @return {NodeConverter|null} The corresponding NodeConverter or null if it is not exist.
 	 */
-	getProcessor( name ) {
-		if ( this._processors.has( name ) ) {
-			return this._processors.get( name );
+	getProcessor( modelName, viewName = null ) {
+		let processor = null;
+
+		if ( this._processors.has( modelName ) ) {
+			processor = this._processors.get( modelName );
+
+			if ( processor.nameType !== 'model' ) {
+				processor = null;
+			}
 		}
 
-		return null;
+		if ( processor === null && viewName !== null && this._processors.has( viewName ) ) {
+			processor = this._processors.get( viewName );
+
+			if ( processor.nameType !== 'view' ) {
+				processor = null;
+			}
+		}
+
+		return processor;
 	}
 
 	/**

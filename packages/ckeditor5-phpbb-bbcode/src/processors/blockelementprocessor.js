@@ -21,6 +21,7 @@ import ModelRange from '@ckeditor/ckeditor5-engine/src/model/range';
 import ViewRange from '@ckeditor/ckeditor5-engine/src/view/range';
 import ConversionResult from '../converters/conversionresult';
 import StaticModelNodeConverter from '../converters/blocknodeconverters/staticmodelnodeconverter';
+import StaticViewNodeConverter from '../converters/blocknodeconverters/staticviewnodeconverter';
 
 /**
  * Block element processor.
@@ -41,6 +42,18 @@ export default class BlockElementProcessor extends ElementProcessor {
 			[
 				'softBreak',
 				new StaticModelNodeConverter( 'softBreak', '', '\n' )
+			],
+			[
+				'ul',
+				new StaticViewNodeConverter( 'ul', '[list]', '[/list]' )
+			],
+			[
+				'ol',
+				new StaticViewNodeConverter( 'ol', '[list=1]', '[/list]' )
+			],
+			[
+				'li',
+				new StaticViewNodeConverter( 'li', '[*]', '\n' )
 			]
 		];
 
@@ -58,8 +71,10 @@ export default class BlockElementProcessor extends ElementProcessor {
 	process( modelPosition, viewPosition ) {
 		const modelNode = modelPosition.nodeAfter;
 		const modelName = modelNode.name;
+		const viewNode = viewPosition.nodeAfter;
+		const viewName = viewNode.name;
 
-		const processor = this.getProcessor( modelName );
+		const processor = this.getProcessor( modelName, viewName );
 		if ( processor === null ) {
 			return this._skipNode( modelPosition, viewPosition );
 		}
