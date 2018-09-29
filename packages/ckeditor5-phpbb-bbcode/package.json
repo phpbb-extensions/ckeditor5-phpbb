@@ -4,7 +4,7 @@
   "description": "BBCode data processor for CKEditor5",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/phpbb-extensions/ckeditor5-phpbb-bbcode.git"
+    "url": "git+https://github.com/phpbb-extensions/ckeditor5-phpbb.git"
   },
   "keywords": [
     "CKEditor5",
@@ -18,9 +18,9 @@
   "author": "phpBB Limited",
   "license": "GPL-2.0",
   "bugs": {
-    "url": "https://github.com/phpbb-extensions/ckeditor5-phpbb-bbcode/issues"
+    "url": "https://github.com/phpbb-extensions/ckeditor5-phpbb/issues"
   },
-  "homepage": "https://github.com/phpbb-extensions/ckeditor5-phpbb-bbcode#readme",
+  "homepage": "https://github.com/phpbb-extensions/ckeditor5-phpbb#readme",
   "dependencies": {
     "@ckeditor/ckeditor5-core": "^11.0.0",
     "@ckeditor/ckeditor5-engine": "^10.2.0"

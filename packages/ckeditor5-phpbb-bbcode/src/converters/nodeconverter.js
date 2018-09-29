@@ -23,17 +23,18 @@ export default class NodeConverter {
 	/**
 	 * Constructor.
 	 *
-	 * @param {String} modelName The CKEditor5 model node name.
+	 * @param {String} name The CKEditor5 model or view node name.
 	 * @param {String} priority Priority string.
+	 * @param {String} nameSource 'view' or 'model' to define which name to use during the conversion (defaults to 'model').
 	 */
-	constructor( modelName, priority ) {
+	constructor( name, priority, nameSource = 'model' ) {
 		/**
 		 * Model name.
 		 *
 		 * @type {String}
 		 * @private
 		 */
-		this._modelName = modelName;
+		this._name = name;
 
 		/**
 		 * Priority string.
@@ -42,6 +43,14 @@ export default class NodeConverter {
 		 * @private
 		 */
 		this._priority = priority;
+
+		/**
+		 * Conversion name source.
+		 *
+		 * @type {String}
+		 * @private
+		 */
+		this._type = nameSource;
 	}
 
 	/**
@@ -50,7 +59,7 @@ export default class NodeConverter {
 	 * @return The model name.
 	 */
 	get name() {
-		return this._modelName;
+		return this._name;
 	}
 
 	/**
@@ -60,5 +69,14 @@ export default class NodeConverter {
 	 */
 	get priority() {
 		return this._priority;
+	}
+
+	/**
+	 * Returns whether to use the model or the view name during the conversion for the specific node.
+	 *
+	 * @return {String}
+	 */
+	get nameType() {
+		return this._type;
 	}
 }

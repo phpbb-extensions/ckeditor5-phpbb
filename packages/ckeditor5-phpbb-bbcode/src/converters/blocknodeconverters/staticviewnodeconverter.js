@@ -13,27 +13,27 @@
 'use strict';
 
 /**
- * @module bbcode/converters/blocknodeconverters/staticmodelnodeconverter
+ * @module bbcode/converters/blocknodeconverters/staticviewnodeconverter
  */
 
-import ModelRange from '@ckeditor/ckeditor5-engine/src/model/range';
 import ConversionResult from '../conversionresult';
 import NodeConverter from '../nodeconverter';
+import ViewRange from '@ckeditor/ckeditor5-engine/src/view/range';
 
 /**
- * Model block node converter with static outputs.
+ * Static view to BBCode converter for block elements.
  */
-export default class StaticModelNodeConverter extends NodeConverter {
+export default class StaticViewNodeConverter extends NodeConverter {
 	/**
 	 * Constructor.
 	 *
-	 * @param {String} modelName	Name of the model node.
+	 * @param {String} viewName		Name of the model node.
 	 * @param {String} openingTag	Opening tag.
 	 * @param {String} closingTag	Closing tag.
 	 * @param {String} priority		Priority string.
 	 */
-	constructor( modelName, openingTag, closingTag, priority = 'low' ) {
-		super( modelName, priority );
+	constructor( viewName, openingTag, closingTag, priority = 'low' ) {
+		super( viewName, priority, 'view' );
 
 		/**
 		 * The opening BBCode tag.
@@ -56,11 +56,11 @@ export default class StaticModelNodeConverter extends NodeConverter {
 	 * @inheritDoc
 	 */
 	process( modelPosition, viewPosition, converter ) {
-		const modelNode = modelPosition.nodeAfter;
-		const innerModelRange = ModelRange.createIn( modelNode );
-		const innerViewRange = converter.mapper.toViewRange( innerModelRange );
-		const outerModelRange = ModelRange.createOn( modelNode );
-		const outerViewRange = converter.mapper.toViewRange( outerModelRange );
+		const viewNode = viewPosition.nodeAfter;
+		const innerViewRange = ViewRange.createIn( viewNode );
+		const innerModelRange = converter.mapper.toModelRange( innerViewRange );
+		const outerViewRange = ViewRange.createOn( viewNode );
+		const outerModelRange = converter.mapper.toModelRange( outerViewRange );
 
 		const content = converter.processChildren(
 			innerModelRange,
